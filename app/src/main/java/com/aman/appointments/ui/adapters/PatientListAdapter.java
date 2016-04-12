@@ -15,7 +15,10 @@ import com.aman.appointments.ui.activities.MainActivity;
 import com.aman.appointments.widget.CircleTransform;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Aman on 09-04-2016.
@@ -50,6 +53,14 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         holder.detailsTxt.setText(patientDetails);
         holder.phoneTxt.setText(patient.getMobileNo());
         holder.addressTxt.setText(patient.getAddress());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:SS");
+        try {
+            Date date =dateFormat.parse(patient.getDate());
+            // Log.e("DAte",date+" " + new SimpleDateFormat("MMMM dd, HH:mm").format(date) );
+            holder.dateTxt.setText(new SimpleDateFormat("MMMM dd, HH:mm").format(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Picasso.with(context).load(patient.getProfile())
                 .transform(new CircleTransform())
                 .placeholder(R.drawable.ic_user)

@@ -17,11 +17,18 @@ import android.widget.Toast;
 import com.aman.appointments.R;
 import com.aman.appointments.model.patientList.Patient;
 import com.aman.appointments.ui.activities.MainActivity;
+import com.aman.appointments.ui.activities.SplashActivity;
 import com.aman.appointments.ui.recyclerview.ItemTouchHelperAdapter;
 import com.aman.appointments.widget.CircleTransform;
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
+import jp.wasabeef.recyclerview.animators.SlideInRightAnimator;
 
 /**
  * Created by Aman on 10-04-2016.
@@ -30,10 +37,10 @@ public class AcceptCardAdapter extends RecyclerView.Adapter<AcceptCardAdapter.Ac
     private ArrayList<Patient> patientsList=new ArrayList<>();
     private ArrayList<Patient> acceptedList=new ArrayList<>();
     private LayoutInflater inflater;
-    private Context context;
-    public AcceptCardAdapter(Context context){
-        this.context=context;
-        inflater=LayoutInflater.from(context);
+    private SplashActivity activity;
+    public AcceptCardAdapter(SplashActivity activity){
+        this.activity=activity;
+        inflater=LayoutInflater.from(activity);
     }
     public void setPatientsList(ArrayList<Patient> patientsList) {
         this.patientsList = patientsList;
@@ -53,8 +60,16 @@ public class AcceptCardAdapter extends RecyclerView.Adapter<AcceptCardAdapter.Ac
         holder.nameTxt.setText(patient.getName());
         String patientDetails= "Age "+patient.getAge()+","+patient.getGender()+","+patient.getBloodGroup();
         holder.detailsTxt.setText(patientDetails);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:SS");
+        try {
+            Date date =dateFormat.parse(patient.getDate());
+            //Log.e("DAte",date+" " + new SimpleDateFormat("MMMM dd, HH:mm").format(date) );
+            holder.timeTxt.setText("Scheduled on "+new SimpleDateFormat("MMMM dd, HH:mm").format(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         //holder.timeTxt.setText(patient.getDate());
-        Picasso.with(context).load(patient.getProfile())
+        Picasso.with(activity).load(patient.getProfile())
                 .transform(new CircleTransform())
                 .placeholder(R.drawable.ic_user)
                 .error(R.drawable.ic_user)
@@ -70,14 +85,15 @@ public class AcceptCardAdapter extends RecyclerView.Adapter<AcceptCardAdapter.Ac
     public void onItemDismiss(int position,int direction) {
         if(direction== ItemTouchHelper.RIGHT){
             acceptedList.add(patientsList.get(position));
-            Toast.makeText(context,"Appointment Added",Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity,"Appointment Added",Toast.LENGTH_SHORT).show();
         }
         patientsList.remove(position);
         notifyItemRemoved(position);
         if(patientsList.size()==0 ){
-            Intent intent=new Intent(context, MainActivity.class);
+            Intent intent=new Intent(activity, MainActivity.class);
             intent.putParcelableArrayListExtra("array",acceptedList);
-            context.startActivity(intent);
+            activity.startActivity(intent);
+            activity.overridePendingTransition(R.transition.slide, R.transition.exit);
         }
     }
 
@@ -103,10 +119,24 @@ public class AcceptCardAdapter extends RecyclerView.Adapter<AcceptCardAdapter.Ac
         @Override
         public void onClick(View v) {
             if(v.getId()==R.id.txt_accept){
-                onItemDismiss(getAdapterPosition(),ItemTouchHelper.RIGHT);
+               // onItemDismiss(getAdapterPosition(),ItemTouchHelper.RIGHT);
+                acceptedList.add(patientsList.get(getAdapterPosition()));
+                Toast.makeText(activity,"Appointment Added",Toast.LENGTH_SHORT).show();
+                patientsList.remove(getAdapterPosition());
+                activity.getRecyclerView().setItemAnimator(new SlideInRightAnimator());
+                notifyItemRemoved(getAdapterPosition());
             }
             else if(v.getId()==R.id.txt_decline){
-                onItemDismiss(getAdapterPosition(),ItemTouchHelper.LEFT);
+                //onItemDismiss(getAdapterPosition(),ItemTouchHelper.LEFT);
+                patientsList.remove(getAdapterPosition());
+                activity.getRecyclerView().setItemAnimator(new SlideInLeftAnimator());
+                notifyItemRemoved(getAdapterPosition());
+            }
+            if(patientsList.size()==0 ){
+                Intent intent=new Intent(activity, MainActivity.class);
+                intent.putParcelableArrayListExtra("array",acceptedList);
+                activity.startActivity(intent);
+                activity.overridePendingTransition(R.transition.slide, R.transition.exit);
             }
         }
     }

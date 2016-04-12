@@ -16,14 +16,19 @@ import com.aman.appointments.ui.adapters.AcceptCardAdapter;
 import com.aman.appointments.ui.recyclerview.ItemTouchCallback;
 import com.aman.appointments.utils.Utility;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 public class SplashActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AcceptCardAdapter adapter;
     private ItemTouchHelper.Callback callback;
     private ItemTouchHelper helper;
-    private ArrayList<Patient> acceptedList;
     ArrayList<Patient> patients;
 
     @Override
@@ -34,20 +39,19 @@ public class SplashActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter=new AcceptCardAdapter(this);
         recyclerView.setAdapter(adapter);
+        recyclerView.setItemAnimator(new SlideInLeftAnimator());
         getData();
         callback=new ItemTouchCallback(adapter);
         helper=new ItemTouchHelper(callback);
         helper.attachToRecyclerView(recyclerView);
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //startActivity(new Intent(SplashActivity.this,MainActivity.class));
-                Log.e("Count",adapter.getAcceptedList().size()+"");
-            }
-        });
     }
     private void getData(){
         patients= Utility.getPatients(this);
+        Utility.sort(patients);
         adapter.setPatientsList(patients);
+    }
+
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
     }
 }

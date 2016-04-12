@@ -10,7 +10,7 @@
 		"emailId": "abc@gmail.com",
 		"profile": "http://thejakartaglobe.beritasatu.com/img/523512-640x360.jpg",
 		"mobileNo": "9922334457",
-		"date": "2016-04-16T04:20:30+01:00"
+		"date": "2016-04-16T04:20:30"
 
 	}, {
 		"name": "Rishav",
@@ -23,7 +23,7 @@
 		"emailId": "rishav@gmail.com",
 		"profile": "http://thejakartaglobe.beritasatu.com/img/523515-640x360.jpg",
 		"mobileNo": "9922338957",
-		"date": "2016-04-30T04:20:30+01:00"
+		"date": "2016-04-30T04:20:30"
 	}, {
 		"name": "Thilak Alva",
 		"id": "3",
@@ -35,7 +35,7 @@
 		"emailId": "abc@gmail.com",
 		"profile": "http://thejakartaglobe.beritasatu.com/img/523539-640x360.jpg",
 		"mobileNo": "9922134457",
-		"date": "2016-04-20T04:20:30+01:00"
+		"date": "2016-04-20T04:20:30"
 	}, {
 		"name": "Farooque",
 		"id": "4",
@@ -47,7 +47,7 @@
 		"emailId": "farooque@gmail.com",
 		"profile": "http://thejakartaglobe.beritasatu.com/img/523696-640x360.jpg",
 		"mobileNo": "9982334457",
-		"date": "2016-04-08T04:20:30+01:00"
+		"date": "2016-04-08T04:20:30"
 	}, {
 		"name": "Nitesh Mishra",
 		"id": "5",
@@ -59,7 +59,7 @@
 		"emailId": "nitesh@gmail.com",
 		"profile": "http://thejakartaglobe.beritasatu.com/img/523048-640x360.jpg",
 		"mobileNo": "9922334457",
-		"date": "2016-04-27T04:20:30+01:00"
+		"date": "2016-04-27T04:20:30"
 	}, {
 		"name": "Elavarasan B",
 		"id": "6",
@@ -71,7 +71,7 @@
 		"emailId": "elaa@gmail.com",
 		"profile": "http://thejakartaglobe.beritasatu.com/img/523512-640x360.jpg",
 		"mobileNo": "9900334457",
-		"date": "2016-04-28T04:20:30+01:00"
+		"date": "2016-04-28T04:20:30"
 	}, {
 		"name": "Anjali",
 		"id": "7",
@@ -83,7 +83,7 @@
 		"emailId": "anjali@gmail.com",
 		"profile": "http://thejakartaglobe.beritasatu.com/img/523518-640x360.jpg",
 		"mobileNo": "9072334457",
-		"date": "2016-04-11T04:20:30+01:00"
+		"date": "2016-04-11T04:20:30"
 	}, {
 		"name": "Abhijit",
 		"id": "8",
@@ -95,7 +95,7 @@
 		"emailId": "abhi@gmail.com",
 		"profile": "http://thejakartaglobe.beritasatu.com/img/523545-640x360.jpg",
 		"mobileNo": "9922334457",
-		"date": "2016-04-15T04:20:30+01:00"
+		"date": "2016-04-15T04:20:30"
 	}, {
 		"name": "Rajan Vohra",
 		"id": "9",
@@ -107,7 +107,7 @@
 		"emailId": "Rajan@gmail.com",
 		"profile": "http://thejakartaglobe.beritasatu.com/img/523549-640x360.jpg",
 		"mobileNo": "9922734457",
-		"date": "2016-04-10T04:20:30+01:00"
+		"date": "2016-04-10T04:20:30"
 	}, {
 		"name": "Ravinder",
 		"id": "10",
@@ -119,6 +119,6 @@
 		"emailId": "ravinder@gmail.com",
 		"profile": "http://thejakartaglobe.beritasatu.com/img/523549-640x360.jpg",
 		"mobileNo": "9882734457",
-		"date": "2016-04-19T04:20:30+01:00"
+		"date": "2016-04-19T04:20:30"
 	}]
 }

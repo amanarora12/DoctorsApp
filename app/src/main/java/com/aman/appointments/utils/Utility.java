@@ -12,7 +12,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by Aman on 08-04-2016.
@@ -59,5 +63,19 @@ public class Utility {
             return "";
         }
 
+    }
+    public static void sort(ArrayList<Patient> patients){
+        Collections.sort(patients, new Comparator<Patient>() {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:SS");
+            @Override
+            public int compare(Patient lhs, Patient rhs) {
+                try {
+                    return dateFormat.parse(lhs.getDate()).compareTo(dateFormat.parse(rhs.getDate()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return 99;
+            }
+        });
     }
 }

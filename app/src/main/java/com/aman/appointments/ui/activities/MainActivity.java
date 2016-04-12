@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Transition transitionSlideRight =
-                TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
-        getWindow().setEnterTransition(transitionSlideRight);
+        //Transition transitionSlideRight =
+        //        TransitionInflater.from(this).inflateTransition(R.transition.slide_right);
+        //getWindow().setEnterTransition(transitionSlideRight);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void getData(){
         patientsList= getIntent().getParcelableArrayListExtra("array");
+        Utility.sort(patientsList);
         adapter.setPatientsList(patientsList);
     }
     @Override
@@ -74,5 +75,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 }
