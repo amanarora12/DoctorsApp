@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.aman.appointments.R;
 import com.aman.appointments.model.patientList.Patient;
 import com.aman.appointments.ui.activities.MainActivity;
+import com.aman.appointments.ui.activities.PatientDetailsActivity;
 import com.aman.appointments.widget.CircleTransform;
 import com.squareup.picasso.Picasso;
 
@@ -73,7 +74,7 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         return patientsList.size();
     }
 
-    class PatientViewHolder extends RecyclerView.ViewHolder{
+    class PatientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView displayPic;
         private TextView nameTxt,dateTxt,detailsTxt,phoneTxt,addressTxt;
 
@@ -85,6 +86,17 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
             detailsTxt= (TextView) itemView.findViewById(R.id.txt_patient_details);
             phoneTxt= (TextView) itemView.findViewById(R.id.txt_phone);
             addressTxt= (TextView) itemView.findViewById(R.id.txt_address);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent intent=new Intent(context, PatientDetailsActivity.class);
+            intent.putExtra("patient",patientsList.get(getAdapterPosition()).getId());
+            intent.putExtra("age",patientsList.get(getAdapterPosition()).getAge());
+            intent.putExtra("gender",patientsList.get(getAdapterPosition()).getGender());
+            intent.putExtra("bloodType",patientsList.get(getAdapterPosition()).getBloodGroup());
+            context.startActivity(intent);
         }
     }
 }

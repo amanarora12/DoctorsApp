@@ -1,29 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.aman.appointments.ui.activities.PatientDetailsActivity">
-    <android.support.design.widget.AppBarLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:theme="@style/AppTheme.AppBarOverlay">
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp" />
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+    <View
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_light"
+        android:elevation="@dimen/z_card"
+        android:transitionName="@string/transition_player_background" />
+
+    <ImageView
+        android:id="@+id/patient_pic"
+        android:layout_width="@dimen/large_avatar_size"
+        android:layout_height="@dimen/large_avatar_size"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/avatar_margin"
+        android:layout_marginTop="@dimen/large_avatar_margin"
+        android:elevation="@dimen/z_card"
+        android:padding="@dimen/avatar_padding"
+        android:src="@drawable/picture_placeholder"
+        android:transitionName="@string/transition_player_avatar" />
+    <LinearLayout
+        android:id="@+id/patient_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:transitionGroup="false"
+        android:elevation="2dp"
+        android:background="@android:color/transparent">
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="160dp" />
+        <TextView
+            android:id="@+id/patient_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-medium"
+            tools:text="Rishav Mishra"
+            />
+        <TextView
+            android:id="@+id/patient_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:textSize="17sp"
+            android:fontFamily="sans-serif-condensed"
+            tools:text="Male, 26 years, B+"
+            />
+        <TextView
+            android:id="@+id/doctor_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            android:letterSpacing="0.01"
+            android:textColor="@color/text_tertiary_dark"
+            tools:text="Doctor- Dr. Vikram C., ENT Specialist"
+            />
+        <TextView
+            android:id="@+id/diseases_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:letterSpacing="0.01"
+            android:textColor="@color/text_tertiary_dark"
+            tools:text="Known Diseases - Asthma,BP,Diabetes"
+            />
+
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/diagnosis_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="2dp"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="outsideOverlay"
+        android:clipToPadding="false"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp"
+                app:cardUseCompatPadding="true">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp"
+                    android:padding="10dp">
+                    <TextView
+                        android:id="@+id/diagnosis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Chronic Fatigue Syndrome"
+                        android:textSize="18sp"
+                        android:textColor="@color/primaryText"
+                        android:fontFamily="sans-serif-condensed"/>
+                    <TextView
+                        android:id="@+id/txt_symptoms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Symptoms"
+                        android:paddingTop="5dp"
+                        android:layout_below="@id/diagnosis"
+                        android:layout_alignLeft="@id/diagnosis"
+                        android:textColor="@color/colorAccent"/>
+                    <TextView
+                        android:id="@+id/symptoms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/txt_symptoms"
+                        android:padding="8dp"
+                        android:text="Fever, Dizziness"
+                        android:layout_alignBaseline="@id/txt_symptoms"/>
+                    <TextView
+                        android:id="@+id/comments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txt_symptoms"
+                        android:paddingTop="10dp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:elegantTextHeight="true"
+                        android:textSize="15sp"
+                        android:lineSpacingExtra="5sp"
+                        tools:text="People with CFS sleep poorly and awake unrefreshed. They have frequent headaches, muscle and joint pain, recurring sore throats and memory problems. The intensity and type of symptoms can vary from day to day and from person to person. Patient should take medication reqularly"/>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp"
+                app:cardUseCompatPadding="true">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
+                    <TextView
+                        android:id="@+id/txt_medicine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Medication"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-condensed"/>
+                    <TextView
+                        android:id="@+id/medicine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/txt_medicine"
+                        android:layout_alignBaseline="@id/txt_medicine"
+                        tools:text="Acetaminophen(20 Tablets)"
+                        android:textColor="@color/secondaryAccent"
+                        android:paddingLeft="8dp"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-condensed"/>
+                    <LinearLayout
+                        android:id="@+id/stats"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txt_medicine"
+                        android:paddingTop="16dp"
+                        android:paddingEnd="16sp"
+                        android:paddingBottom="8sp"
+                        android:clipToPadding="false">
+
+                        <TextView
+                            android:id="@+id/morning"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/ic_weather_sunset_up_grey600_24dp"
+                            android:background="@null"
+                            tools:text="1 tablet"
+                            style="@style/Widget.DocsApp.InlineActionButton" />
+
+                        <TextView
+                            android:id="@+id/afternoon"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawableTop="@drawable/ic_weather_sunny_grey600_24dp"
+                            tools:text="1 tablet"
+                            style="@style/Widget.DocsApp.InlineActionButton" />
+
+                        <TextView
+                            android:id="@+id/night"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginBottom="8dp"
+                            android:drawableTop="@drawable/ic_weather_night_grey600_24dp"
+                            android:background="@null"
+                            tools:text="1 tablet"
+                            style="@style/Widget.DocsApp.InlineActionButton" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+</FrameLayout>
