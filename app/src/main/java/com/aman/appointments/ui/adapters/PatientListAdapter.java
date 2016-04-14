@@ -1,8 +1,12 @@
 package com.aman.appointments.ui.adapters;
 
+import android.Manifest;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +30,13 @@ import java.util.Date;
  * Created by Aman on 09-04-2016.
  */
 public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.PatientViewHolder> {
-    private ArrayList<Patient> patientsList=new ArrayList<>();
+    private ArrayList<Patient> patientsList = new ArrayList<>();
     private LayoutInflater inflater;
     private MainActivity context;
-    public PatientListAdapter(MainActivity context){
-        this.context=context;
-        inflater=LayoutInflater.from(context);
+
+    public PatientListAdapter(MainActivity context) {
+        this.context = context;
+        inflater = LayoutInflater.from(context);
     }
 
     public void setPatientsList(ArrayList<Patient> patientsList) {
@@ -41,23 +46,23 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
 
     @Override
     public PatientViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view=inflater.inflate(R.layout.patient_list_item,parent,false);
-        PatientViewHolder viewHolder=new PatientViewHolder(view);
+        View view = inflater.inflate(R.layout.patient_list_item, parent, false);
+        PatientViewHolder viewHolder = new PatientViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(PatientViewHolder holder, int position) {
-        Patient patient=patientsList.get(position);
+        Patient patient = patientsList.get(position);
         //holder.dateTxt.setText(patient.getDate());
         holder.nameTxt.setText(patient.getName());
-        String patientDetails= "Age "+patient.getAge()+","+patient.getGender()+","+patient.getBloodGroup();
+        String patientDetails = "Age " + patient.getAge() + "," + patient.getGender() + "," + patient.getBloodGroup();
         holder.detailsTxt.setText(patientDetails);
         holder.phoneTxt.setText(patient.getMobileNo());
         holder.addressTxt.setText(patient.getAddress());
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:SS");
         try {
-            Date date =dateFormat.parse(patient.getDate());
+            Date date = dateFormat.parse(patient.getDate());
             // Log.e("DAte",date+" " + new SimpleDateFormat("MMMM dd, HH:mm").format(date) );
             holder.dateTxt.setText(new SimpleDateFormat("MMMM dd, HH:mm").format(date));
         } catch (ParseException e) {
@@ -75,6 +80,23 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
         return patientsList.size();
     }
 
+    public void callANumber(Context context, String number) {
+        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+        callIntent.setData(Uri.parse("tel:" + number));
+        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+       /* if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }*/
+        context.startActivity(callIntent);
+    }
+
     class PatientViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView displayPic;
         private TextView nameTxt,dateTxt,detailsTxt,phoneTxt,addressTxt;
@@ -88,20 +110,26 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
             phoneTxt= (TextView) itemView.findViewById(R.id.txt_phone);
             addressTxt= (TextView) itemView.findViewById(R.id.txt_address);
             itemView.setOnClickListener(this);
+            phoneTxt.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            Intent intent=new Intent(context, PatientDetailsActivity.class);
-            intent.putExtra("patient",patientsList.get(getAdapterPosition()).getId());
-            intent.putExtra("age",patientsList.get(getAdapterPosition()).getAge());
-            intent.putExtra("gender",patientsList.get(getAdapterPosition()).getGender());
-            intent.putExtra("bloodType",patientsList.get(getAdapterPosition()).getBloodGroup());
-            intent.putExtra("profile",patientsList.get(getAdapterPosition()).getProfile());
-            ActivityOptions options =
-                    ActivityOptions.makeSceneTransitionAnimation(context,
-                            displayPic, context.getString(R.string.transition_player_avatar));
-            context.startActivity(intent,options.toBundle());
+            if(v.getId()==R.id.txt_phone){
+                callANumber(context,patientsList.get(getAdapterPosition()).getMobileNo());
+            }else{
+                Intent intent=new Intent(context, PatientDetailsActivity.class);
+                intent.putExtra("patient",patientsList.get(getAdapterPosition()).getId());
+                intent.putExtra("age",patientsList.get(getAdapterPosition()).getAge());
+                intent.putExtra("gender",patientsList.get(getAdapterPosition()).getGender());
+                intent.putExtra("bloodType",patientsList.get(getAdapterPosition()).getBloodGroup());
+                intent.putExtra("profile",patientsList.get(getAdapterPosition()).getProfile());
+                ActivityOptions options =
+                        ActivityOptions.makeSceneTransitionAnimation(context,
+                                displayPic, context.getString(R.string.transition_player_avatar));
+                context.startActivity(intent,options.toBundle());
+            }
+
         }
     }
 }
