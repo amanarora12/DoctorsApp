@@ -3,4 +3,9 @@
     <string name="action_settings">Settings</string>
     <string name="transition_player_avatar" translatable="false">transition_player_avatar</string>
     <string name="transition_player_background" translatable="false">transition_player_background</string>
+    <array name="loading_placeholders_light">
+        <item>#fff5f5f5</item>
+        <item>#ffeeeeee</item>
+        <item>#ffe0e0e0</item>
+    </array>
 </resources>

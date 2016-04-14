@@ -1,5 +1,6 @@
 package com.aman.appointments.ui.adapters;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -27,8 +28,8 @@ import java.util.Date;
 public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.PatientViewHolder> {
     private ArrayList<Patient> patientsList=new ArrayList<>();
     private LayoutInflater inflater;
-    private Context context;
-    public PatientListAdapter(Context context){
+    private MainActivity context;
+    public PatientListAdapter(MainActivity context){
         this.context=context;
         inflater=LayoutInflater.from(context);
     }
@@ -96,7 +97,11 @@ public class PatientListAdapter extends RecyclerView.Adapter<PatientListAdapter.
             intent.putExtra("age",patientsList.get(getAdapterPosition()).getAge());
             intent.putExtra("gender",patientsList.get(getAdapterPosition()).getGender());
             intent.putExtra("bloodType",patientsList.get(getAdapterPosition()).getBloodGroup());
-            context.startActivity(intent);
+            intent.putExtra("profile",patientsList.get(getAdapterPosition()).getProfile());
+            ActivityOptions options =
+                    ActivityOptions.makeSceneTransitionAnimation(context,
+                            displayPic, context.getString(R.string.transition_player_avatar));
+            context.startActivity(intent,options.toBundle());
         }
     }
 }

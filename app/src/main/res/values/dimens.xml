@@ -9,4 +9,5 @@
     <dimen name="avatar_margin">12dp</dimen>
     <dimen name="z_card">2dp</dimen>
     <dimen name="avatar_padding">4dp</dimen>
+    <dimen name="drag_dismiss_distance">112dp</dimen>
 </resources>

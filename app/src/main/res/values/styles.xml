@@ -32,4 +32,36 @@
         <item name="android:fontFeatureSettings">smcp, onum</item>
         <item name="android:letterSpacing">0.02</item>
     </style>
+
+    <style name="DocsApp" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementsUseOverlay">false</item>
+    </style>
+    <style name="DocsApp.Translucent">
+        <!-- using a semi-transparent window background for the drag-back gesture -->
+        <item name="android:windowBackground">@color/scrim</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+    <style name="DocsApp.Translucent.Shared">
+        <item name="android:colorControlActivated">?android:colorAccent</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+    </style>
+    <style name="DocsApp.Translucent.Shared.Pic">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/light_immersive_bars</item>
+        <item name="android:navigationBarColor">@color/immersive_bars</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/patient_shared_enter</item>
+        <item name="android:windowEnterTransition">@transition/patient_enter</item>
+        <item name="android:windowReturnTransition">@transition/patient_return</item>
+        <item name="android:windowTransitionBackgroundFadeDuration">200</item>
+    </style>
 </resources>

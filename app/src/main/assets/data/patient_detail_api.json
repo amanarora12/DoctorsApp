@@ -13,7 +13,7 @@
 				"Diabetes"
 			],
 			"doctor": "Dr.Jay",
-			"specialty ": "ENT Specialist"
+			"specialty": "ENT Specialist"
 		},
 
 		{
@@ -30,7 +30,7 @@
 				"Diabetes"
 			],
 			"doctor": "Dr.Tarun",
-			"specialty ": "Bone & Joint Sepcialists"
+			"specialty": "Bone & Joint Sepcialists"
 		},
 
 		{
@@ -47,7 +47,7 @@
 				"Diabetes"
 			],
 			"doctor": "Dr.Vikram C",
-			"specialty ": "Psychiatrist"
+			"specialty": "Psychiatrist"
 		},
 
 		{
@@ -64,7 +64,7 @@
 				"Diabetes"
 			],
 			"doctor": "Dr.Nivya",
-			"specialty ": "Gastroenterologist"
+			"specialty": "Gastroenterologist"
 		},
 
 		{
@@ -81,7 +81,7 @@
 				"Diabetes"
 			],
 			"doctor": "Dr.Divya",
-			"specialty ": "Ayurveda"
+			"specialty": "Ayurveda"
 		},
 
 		{
@@ -98,7 +98,7 @@
 				"Diabetes"
 			],
 			"doctor": "Dr.Ekta",
-			"specialty ": "Homeopath"
+			"specialty": "Homeopath"
 		},
 
 		{
@@ -115,7 +115,7 @@
 				"Diabetes"
 			],
 			"doctor": "Dr. Shankar Kumar",
-			"specialty ": "General Physician"
+			"specialty": "General Physician"
 		},
 
 		{
@@ -132,7 +132,7 @@
 				"Diabetes"
 			],
 			"doctor": "Dr.Uday A Murgod",
-			"specialty ": "Neurologist"
+			"specialty": "Neurologist"
 		},
 
 		{
@@ -149,7 +149,7 @@
 				"Diabetes"
 			],
 			"doctor": "Dr. K S Bhat",
-			"specialty ": "Cardiologist"
+			"specialty": "Cardiologist"
 		},
 
 		{
@@ -166,7 +166,7 @@
 				"Diabetes"
 			],
 			"doctor": "Dr.Smitha",
-			"specialty ": "Dentist"
+			"specialty": "Dentist"
 		}
 	]
 }

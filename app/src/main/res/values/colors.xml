@@ -13,4 +13,8 @@
     <color name="content_placeholder">#ffe0e0e0</color>
     <color name="background_light">#fafafa</color>
     <color name="text_tertiary_dark">#61000000</color>
+    <color name="scrim">#99323232</color>
+    <color name="immersive_bars">#99000000</color>
+    <color name="light_immersive_bars">@color/immersive_bars</color>
+    <color name="gif_badge_light_image">#40000000</color>
 </resources>
